@@ -16,8 +16,10 @@ a013
  -> Al descargar quizzes de Internet, si falla algo y no se puden descargar, se muestran los quizes de mock-data.js por
     defecto.
  -> La imagen del autor tiene bordes redondeados.
+ -> Se ha implementado AsyncStorage para guardar, borrar y cargar preguntar guardadas.
+ -> Al pulsar Enter escribiendo una respuesta, se guarda y se pasa a la siguiente respuesta.
+
 * Se ha usado un BottomTabNavigator.
-* Se ha implementado AsyncStorage para guardar, borrar y cargar preguntar guardadas.
 * Se cambia el título de cada vista dinámicamente en función de la pantalla en la que se está y del idioma elegido.
 * Se ha implementado una vista modal que se puede abrir pulsando el icono de arriba a la derecha para cambiar el idoma, siendo posible elegir el español, inglés o el idioma del sistema (si no está, por defecto se usa el inglés).
 * Se ha personalizado el diseño de la aplicación en general.
