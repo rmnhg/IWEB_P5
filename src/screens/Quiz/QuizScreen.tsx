@@ -83,7 +83,6 @@ export default function QuizScreen({ navigation }: RootTabScreenProps<'Home'>) {
     }
     nuevoQM.quizzes = [...quizModel.quizzes];
     setQuizModel(nuevoQM);
-    //alert(alertMessage+score);
       Alert.alert(
           i18n.t('finishedQuiz'),
           alertMessage+score,
@@ -136,8 +135,22 @@ export default function QuizScreen({ navigation }: RootTabScreenProps<'Home'>) {
           '@P5_2021_IWEB:quiz',
           JSON.stringify(quizModel.quizzes)
       );
+      Alert.alert(
+          i18n.t("hometabbutton"),
+          i18n.t('successSaving'),
+          [
+            { text: "OK" }
+          ]
+      );
     } catch (error) {
       // Error saving data
+      Alert.alert(
+          i18n.t("hometabbutton"),
+          i18n.t('errorSaving'),
+          [
+            { text: "OK" }
+          ]
+      );
     }
   };
 
@@ -146,8 +159,22 @@ export default function QuizScreen({ navigation }: RootTabScreenProps<'Home'>) {
       await AsyncStorage.removeItem(
           '@P5_2021_IWEB:quiz'
       );
+      Alert.alert(
+          i18n.t("hometabbutton"),
+          i18n.t('successRemoving'),
+          [
+            { text: "OK" }
+          ]
+      );
     } catch (error) {
-      // Error saving data
+      // Error removing data
+      Alert.alert(
+          i18n.t("hometabbutton"),
+          i18n.t('errorRemoving'),
+          [
+            { text: "OK" }
+          ]
+      );
     }
   };
 
@@ -164,11 +191,31 @@ export default function QuizScreen({ navigation }: RootTabScreenProps<'Home'>) {
         nuevoQM.answeredQuizzes = [];
         nuevoQM.quizzes = [...JSON.parse(value)];
         setQuizModel(nuevoQM);
+        Alert.alert(
+            i18n.t("hometabbutton"),
+            i18n.t('successLoading'),
+            [
+              { text: "OK" }
+            ]
+        );
       } else {
-
+        Alert.alert(
+            i18n.t("hometabbutton"),
+            i18n.t('noQuizzes'),
+            [
+              { text: "OK" }
+            ]
+        );
       }
     } catch (error) {
       // Error retrieving data
+      Alert.alert(
+          i18n.t("hometabbutton"),
+          i18n.t('errorLoading'),
+          [
+            { text: "OK" }
+          ]
+      );
     }
     setLoading(false);
   };

@@ -29,5 +29,12 @@
     "save": "Save quizzes",
     "load": "Load saved quizzes",
     "remove": "Remove saved quizzes",
-    "language": "Language"
-  }
+    "language": "Language",
+    "errorSaving": "We are sorry. There was a problem trying to save current quizzes.",
+    "errorLoading": "We are sorry. There was a problem trying to load saved quizzes.",
+    "errorRemoving": "We are sorry. There was a problem trying to remove saved quizzes.",
+    "successSaving": "Quizzes were saved successfully!",
+    "successLoading": "Saved quizzes were loaded successfully!",
+    "successRemoving": "Saved quizzes were deleted successfully!",
+    "noQuizzes": "There are no saved quizzes."
+}

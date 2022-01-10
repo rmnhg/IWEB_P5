@@ -29,5 +29,12 @@
     "save": "Guardar preguntas",
     "load": "Cargar preguntas guardadas",
     "remove": "Eliminar preguntas guardadas",
-    "language": "Idioma"
+    "language": "Idioma",
+    "errorRetrieving": "Lo sentimos. Ha habido un problema intentando guardar las preguntas.",
+    "errorLoading": "Lo sentimos. Ha habido un problema intentando cargar las preguntas guardadas.",
+    "errorRemoving": "Lo sentimos. Ha habido un problema intentando borrar las preguntas guardadas.",
+    "successSaving": "¡Las preguntas se guardaron correctamente!",
+    "successLoading": "¡Las preguntas guardadas se cargaron correctamente!",
+    "successRemoving": "¡Las preguntas guardadas se eliminaron correctamente!",
+    "noQuizzes": "No hay preguntas guardadas."
   }
