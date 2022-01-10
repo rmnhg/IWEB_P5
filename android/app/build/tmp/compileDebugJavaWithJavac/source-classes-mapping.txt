@@ -1,0 +1,14 @@
+com/p5/ReactNativeFlipper.java
+ com.p5.ReactNativeFlipper
+ com.p5.ReactNativeFlipper$1
+ com.p5.ReactNativeFlipper$2
+ com.p5.ReactNativeFlipper$2$1
+com/p5/MainActivity.java
+ com.p5.MainActivity
+com/p5/MainApplication.java
+ com.p5.MainApplication
+ com.p5.MainApplication$1
+com/p5/BuildConfig.java
+ com.p5.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList

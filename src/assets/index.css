@@ -1,0 +1,49 @@
+body { --primary: #00ee93; --secondary: #ddbc76; margin: 0px;}
+* {font-family: 'Roboto', sans-serif;}
+button { 
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    text-decoration: none;
+    margin: 2px;
+    color: var(--primary);
+    background: white;
+    border: 1px solid var(--primary);
+    height: 20px;
+    font-size: 9px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: ease-in 0.2s all;
+    padding: 0 8px 0 8px;
+}
+div#main {padding: 10px;}
+input {margin-bottom: 5px; margin-top: 2px; padding: 4px; font-size: 12px; }
+div.header {background: var(--primary);}
+h1 { display: inline-block; color: white; font-weight: 300; text-transform: uppercase; font-size: 20px; margin: 0px; padding: 15px;}
+h2 { margin-block-start: 0px; margin-block-end: 10px; font-size: 20px;  color: var(--primary);}
+button:hover { background: var(--primary); color: white; }
+div.actions { margin-top: 10px;}
+.flexbox-container-row {
+    display: flex;
+    flex-direction: row;
+}
+.flexbox-container-col {
+    display: flex;
+    flex-direction: column;
+}
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.horizontal-center {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+div.field {color: var(--primary); text-transform: uppercase; font-size: 12px;}
+.spinner {width: 300px;margin:auto; display: block;}
