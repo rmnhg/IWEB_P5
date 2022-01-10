@@ -1,11 +1,12 @@
 import React, {useState, useContext, useEffect} from "react";
 import { StyleSheet, TextInput, Button, Alert, Dimensions, Image } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import EditScreenInfo from '../../../components/EditScreenInfo';
 import { Text, View } from '../../../components/Themed';
 
-import QuizzesColumn from "./QuizzesColumn";
+import QuizButtons from "./QuizButtons";
 import QuizImage from "./QuizImage";
 import Author from "./Author";
 
@@ -129,6 +130,49 @@ export default function QuizScreen({ navigation }: RootTabScreenProps<'Home'>) {
     setLoading(false);
   };
 
+  const _storeData = async () => {
+    try {
+      await AsyncStorage.setItem(
+          '@P5_2021_IWEB:quiz',
+          JSON.stringify(quizModel.quizzes)
+      );
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  const _removeData = async () => {
+    try {
+      await AsyncStorage.removeItem(
+          '@P5_2021_IWEB:quiz'
+      );
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  const _retrieveData = async () => {
+    setLoading(true);
+    try {
+      const value = await AsyncStorage.getItem('@P5_2021_IWEB:quiz');
+      if (value !== null) {
+        // We have data!!
+        let nuevoQM = new QuizModel();
+        nuevoQM.score = 0;
+        nuevoQM.finished = false;
+        nuevoQM.currentQuiz = 0;
+        nuevoQM.answeredQuizzes = [];
+        nuevoQM.quizzes = [...JSON.parse(value)];
+        setQuizModel(nuevoQM);
+      } else {
+
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
     if (firstLoad)
       fetchData();
@@ -143,23 +187,26 @@ export default function QuizScreen({ navigation }: RootTabScreenProps<'Home'>) {
   if (loading) {
     let spinnerPath = require("../../assets/spinner.gif")
     return (
-        <Image source={spinnerPath} style={styles.spinnerImage} ></Image>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Image source={spinnerPath} style={styles.spinnerImage} ></Image>
+        </View>
     );
   } else {
     return (
         <View style={{flex:1, margin: MARGIN}} >
-        <Text numberOfLines={1} style={styles.question}>{quizzes[currentQuiz].question.substring(0, MAX_CHARACTERS)}</Text>
-        <QuizImage img={quizzes[currentQuiz].attachment} question={quizzes[currentQuiz].question}/>
-        {quizModel.finished ? <TextInput style={styles.input} editable={false} value={quizModel.answeredQuizzes[quizModel.currentQuiz]} /> : <TextInput style={styles.input} onChangeText={setUserAnswer} value={quizModel.answeredQuizzes[quizModel.currentQuiz]} />}
-        {quizModel.finished ? <Button color='#841584' title={i18n.t("restart")} onPress={() => fetchData()}></Button> : <Button color='#841584' title={i18n.t("checkAnswers")} onPress={() => checkAnswers(i18n.t("finishAlert"))}></Button>}
-        <Button color='#841584' title={i18n.t("previous")} onPress={() => (currentQuiz - 1 < 0) ? false : setCurrentQuiz(currentQuiz-1)}></Button>
-        <Button color='#841584' title={i18n.t("next")} onPress={() => (currentQuiz + 1 < quizModel.quizzes.length) ? setCurrentQuiz(currentQuiz+1) : false}></Button>
-        {quizModel.finished ? <Button color='#841584' title={"🤑"} disabled ></Button> : <Button color='#841584' title={"🤑"} onPress={() => cheat()}></Button>}
-        <Author author={quizzes[currentQuiz].author}/>
-        <Text>
-          <Text style={{fontWeight: "bold"}}>{i18n.t("score")}</Text>
-          <Text>{quizModel.score}</Text>
-        </Text>
+          <Text numberOfLines={1} style={styles.question}>{quizzes[currentQuiz].question.substring(0, MAX_CHARACTERS)}</Text>
+          <QuizImage img={quizzes[currentQuiz].attachment} question={quizzes[currentQuiz].question}/>
+          {quizModel.finished ? <TextInput style={styles.input} editable={false} value={quizModel.answeredQuizzes[quizModel.currentQuiz]} /> : <TextInput style={styles.input} onChangeText={setUserAnswer} value={quizModel.answeredQuizzes[quizModel.currentQuiz]} />}
+          <QuizButtons fetchData={fetchData} checkAnswers={checkAnswers} currentQuiz={currentQuiz} quizModel={quizModel} setCurrentQuiz={setCurrentQuiz} cheat={cheat} />
+          <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+          <Button color='#841584' titleStyle={{fontSize: 10}} buttonStyle={{ borderRadius: 30, height: 30 }} title={i18n.t("save")} onPress={_storeData}></Button>
+          <Button color='#841584' titleStyle={{fontSize: 10}} buttonStyle={{ borderRadius: 30, height: 30 }} title={i18n.t("load")} onPress={_retrieveData}></Button>
+          <Button color='#841584' titleStyle={{fontSize: 10}} buttonStyle={{ borderRadius: 30, height: 30 }} title={i18n.t("remove")} onPress={_removeData}></Button>
+          <Author author={quizzes[currentQuiz].author}/>
+          <Text>
+            <Text style={{fontWeight: "bold"}}>{i18n.t("score")}</Text>
+            <Text>{quizModel.score}</Text>
+          </Text>
       </View>
     );
   }
@@ -178,8 +225,10 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginVertical: MARGIN,
+    flexDirection: "row",
+    justifyContent: 'space-between',
     height: 1,
-    width: '80%',
+    width: '100%',
   },
   spinnerImage: {
     width: Dimensions.get('window').width-MARGIN*2,
@@ -188,5 +237,11 @@ const styles = StyleSheet.create({
   input: {
     borderColor: '#000000',
     borderWidth: 1
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    marginTop: 5,
   }
 });

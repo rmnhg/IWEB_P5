@@ -26,5 +26,8 @@
     "finishedQuiz": "Quiz finalizado",
     "finishAlert": "¡Has acabado el quiz! Has alcanzado una puntuación de ",
     "restart": "Reiniciar",
+    "save": "Guardar preguntas",
+    "load": "Cargar preguntas guardadas",
+    "remove": "Eliminar preguntas guardadas",
     "language": "Idioma"
   }

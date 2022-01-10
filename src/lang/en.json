@@ -26,5 +26,8 @@
     "finishedQuiz": "Quiz finished",
     "finishAlert": "You have finished the quiz! You got a total score of ",
     "restart": "Restart",
+    "save": "Save quizzes",
+    "load": "Load saved quizzes",
+    "remove": "Remove saved quizzes",
     "language": "Language"
   }
