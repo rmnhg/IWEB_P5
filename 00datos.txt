@@ -17,7 +17,7 @@ a013
     defecto.
  -> La imagen del autor tiene bordes redondeados.
  -> Se ha implementado AsyncStorage para guardar, borrar y cargar preguntar guardadas.
- -> Al pulsar Enter escribiendo una respuesta, se guarda y se pasa a la siguiente respuesta.
+ -> Al pulsar Enter escribiendo una respuesta, se guarda y se pasa a la siguiente respuesta, y si estamos en la última se comprueban las respuestas dadas.
 
 * Se ha usado un BottomTabNavigator.
 * Se cambia el título de cada vista dinámicamente en función de la pantalla en la que se está y del idioma elegido.

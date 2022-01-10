@@ -196,7 +196,7 @@ export default function QuizScreen({ navigation }: RootTabScreenProps<'Home'>) {
         <View style={{flex:1, margin: MARGIN}} >
           <Text numberOfLines={1} style={styles.question}>{quizzes[currentQuiz].question.substring(0, MAX_CHARACTERS)}</Text>
           <QuizImage img={quizzes[currentQuiz].attachment} question={quizzes[currentQuiz].question}/>
-          {quizModel.finished ? <TextInput style={styles.input} editable={false} value={quizModel.answeredQuizzes[quizModel.currentQuiz]} /> : <TextInput style={styles.input} onChangeText={setUserAnswer} onSubmitEditing={() => (currentQuiz + 1 < quizModel.quizzes.length) ? setCurrentQuiz(currentQuiz+1) : false} value={quizModel.answeredQuizzes[quizModel.currentQuiz]} />}
+          {quizModel.finished ? <TextInput style={styles.input} editable={false} value={quizModel.answeredQuizzes[quizModel.currentQuiz]} /> : <TextInput style={styles.input} onChangeText={setUserAnswer} onSubmitEditing={() => (currentQuiz + 1 < quizModel.quizzes.length) ? setCurrentQuiz(currentQuiz+1) : checkAnswers(i18n.t("finishAlert"))} value={quizModel.answeredQuizzes[quizModel.currentQuiz]} />}
           <QuizButtons fetchData={fetchData} checkAnswers={checkAnswers} currentQuiz={currentQuiz} quizModel={quizModel} setCurrentQuiz={setCurrentQuiz} cheat={cheat} />
           <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
           <Button color='#841584' titleStyle={{fontSize: 10}} buttonStyle={{ borderRadius: 30, height: 30 }} title={i18n.t("save")} onPress={_storeData}></Button>
